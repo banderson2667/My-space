@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,7 +109,7 @@
 
     <!-- Profile section with personal photo and description -->
     <section class="perfil">
-      <img src="https://i.imgur.com/Jb6JXZs.jpg" alt="Benjamin Anderson">
+      <img src="https://images.app.goo.gl/2rZmyq8aBYz92yP78" alt="Benjamin Anderson">
       <div>
         <h2>About Me</h2>
         <p><span class="bold-text">Benjamin Anderson is a passionate IT professional</span> with expertise in technical support, networking, and programming. Currently pursuing Computer Science at UFBA, I bring a unique combination of technical skills and multicultural perspective. <span class="italic-text">What drives me is the constant challenge of solving complex problems through technology while maintaining human connections.</span> Fluent in four languages, I thrive in diverse environments and enjoy bridging gaps between technology and people.</p>
@@ -129,7 +131,7 @@
     <section>
       <h2>Favorite Quote</h2>
       <blockquote>
-        "The only way to do great work is to love what you do." — Steve Jobs
+        “The mind that opens to a new idea never returns to its original size.” — Albert Einstein
       </blockquote>
     </section>
 
