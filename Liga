@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Liga da Justiça nas Telonas</title>
+    <style>
+        /* Estilo geral */
+        body {
+            font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: rgba(0, 0, 20, 0.85);
+            box-shadow: 0 0 25px rgba(0, 87, 184, 0.6);
+            border-left: 1px solid #0057b8;
+            border-right: 1px solid #0057b8;
+            min-height: 100vh;
+        }
+
+        /* Título principal */
+        h1 {
+            font-family: 'Bebas Neue', cursive;
+            text-transform: uppercase;
+            color: #ffd700;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 3.5rem;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px #000;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        h1::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ffd700, transparent);
+        }
+
+        /* Subtítulos */
+        h2, h3 {
+            letter-spacing: 3px;
+            color: #00a8ff;
+            margin-top: 40px;
+            font-size: 2rem;
+            text-transform: uppercase;
+            border-left: 4px solid #ffd700;
+            padding-left: 15px;
+        }
+
+        h3 {
+            color: #ffd700;
+            font-size: 1.5rem;
+        }
+
+        /* Parágrafos */
+        p {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Lista de heróis */
+        ul {
+            background-color: rgba(0, 40, 85, 0.7);
+            border-radius: 8px;
+            padding: 20px 30px;
+            box-shadow: 0 0 15px rgba(0, 168, 255, 0.4);
+            border: 1px solid #00a8ff;
+            list-style-type: none;
+        }
+
+        li {
+            margin-bottom: 12px;
+            padding: 8px 15px;
+            background-color: rgba(0, 87, 184, 0.3);
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding-left: 30px;
+        }
+
+        li:hover {
+            background-color: rgba(0, 87, 184, 0.6);
+            transform: translateX(5px);
+        }
+
+        li::before {
+            content: "★";
+            color: #ffd700;
+            position: absolute;
+            left: 10px;
+        }
+
+        /* Destaques no texto */
+        strong {
+            color: #ffd700;
+            font-weight: normal;
+            letter-spacing: 1px;
+        }
+
+        em {
+            font-style: italic;
+            color: #00a8ff;
+        }
+
+        /* Rodapé */
+        footer {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 50px;
+            border-top: 1px solid #0057b8;
+            padding-top: 20px;
+            text-align: center;
+        }
+
+        /* Efeitos especiais */
+        .hero-highlight {
+            display: inline-block;
+            padding: 0 5px;
+            background-color: rgba(0, 168, 255, 0.2);
+            border-radius: 3px;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Liga da Justiça retorna aos cinemas</h1>
+        <h2>A nova visão épica de Zack Snyder</h2>
+
+        <p>Em março de 2021, os fãs da DC Comics finalmente receberam o aguardado <strong class="hero-highlight">Snyder Cut</strong> de <em>Liga da Justiça</em>, uma versão definitiva do filme lançado originalmente em 2017. Com quatro horas de duração, esta obra-prima apresenta a visão original do diretor <strong>Zack Snyder</strong>, que havia deixado o projeto por motivos pessoais antes do lançamento da versão anterior.</p>
+
+        <p>O lançamento histórico aconteceu após uma intensa campanha dos fãs nas redes sociais, marcada pela hashtag viral <strong class="hero-highlight">#ReleaseTheSnyderCut</strong>, que mobilizou milhões de fãs em todo o mundo e redefiniu o relacionamento entre estúdios e audiências.</p>
+
+        <h2>Heróis em Destaque</h2>
+        <ul>
+            <li><strong>Superman (Clark Kent):</strong> Retorna mais poderoso do que nunca, com seu icônico traje negro.</li>
+            <li><strong>Batman (Bruce Wayne):</strong> O estrategista sombrio que lidera a formação da equipe.</li>
+            <li><strong>Mulher-Maravilha (Diana Prince):</strong> A guerreira amazona com 5,000 anos de experiência em combate.</li>
+            <li><strong>Aquaman (Arthur Curry):</strong> O rei dos oceanos com força sobre-humana.</li>
+            <li><strong>Flash (Barry Allen):</strong> O velocista escarlate que traz humor e energia à equipe.</li>
+            <li><strong>Ciborgue (Victor Stone):</strong> O coração tecnológico da equipe com acesso a todo conhecimento digital.</li>
+        </ul>
+
+        <h3>Impacto Cultural</h3>
+        <p>O Snyder Cut foi aclamado por trazer profundidade sem precedentes aos personagens, especialmente ao <strong class="hero-highlight">Ciborgue</strong>, cujo arco emocional se tornou central na narrativa. Este fenômeno cultural reacendeu debates sobre autoria cinematográfica e demonstrou o poder dos fãs na indústria do entretenimento. A versão definitiva está disponível exclusivamente na <em>HBO Max</em> e continua influenciando o futuro do Universo Cinematográfico da DC.</p>
+
+        <footer>
+            <p><em>Fonte: Adaptado de CNN Brasil e Omelete, 2021. | Aula de Sistemas Web com Profa Laise.(UFBA) | Design modernizado para fãs da DC</em></p>
+        </footer>
+    </div>
+</body>
+</html>
