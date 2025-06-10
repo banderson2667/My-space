@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Liga da Justiça nas Telonas</title>
+    <style>
+        /* Reset universal */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Estilo geral */
+        body {
+            font-family: 'Bebas Neue', 'Arial Narrow', Arial, sans-serif;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Container principal */
+        #main-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: rgba(0, 0, 20, 0.85);
+            box-shadow: 0 0 25px rgba(0, 87, 184, 0.6);
+            border-left: 1px solid #0057b8;
+            border-right: 1px solid #0057b8;
+            min-height: 100vh;
+        }
+
+        /* Seção do carrossel */
+        .hero-carousel {
+            margin: 40px 0;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 168, 255, 0.6);
+        }
+
+        .carousel-inner {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .carousel-item {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .carousel-item img {
+            width: 100%;
+            display: block;
+        }
+
+        .carousel-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px;
+            text-align: center;
+        }
+
+        .carousel-caption h3 {
+            color: #ffd700;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            border-left: none;
+            padding-left: 0;
+        }
+
+        /* Seção de vilões */
+        .villains-section {
+            margin: 50px 0;
+        }
+
+        .villains-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .villain-card {
+            background: rgba(40, 0, 0, 0.7);
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #b80000;
+            box-shadow: 0 0 15px rgba(184, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .villain-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 25px rgba(184, 0, 0, 0.8);
+        }
+
+        .villain-card h3 {
+            color: #ff6b6b;
+            border-left: 4px solid #b80000;
+            padding-left: 10px;
+            margin-bottom: 15px;
+        }
+
+        .villain-card p {
+            font-size: 0.95rem;
+        }
+
+        /* Botões de navegação */
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 168, 255, 0.5);
+            color: white;
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(0, 168, 255, 0.8);
+        }
+
+        #prevBtn {
+            left: 10px;
+            border-radius: 0 5px 5px 0;
+        }
+
+        #nextBtn {
+            right: 10px;
+            border-radius: 5px 0 0 5px;
+        }
+
+        /* Restante do CSS permanece igual */
+        /* ... (mantenha todos os outros estilos existentes) ... */
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div id="main-container">
+        <h1>Liga da Justiça retorna aos cinemas</h1>
+        <h2>A nova visão épica de Zack Snyder</h2>
+
+        <p>Em março de 2021, os fãs da DC Comics finalmente receberam o aguardado <strong class="hero-highlight">Snyder Cut</strong> de <em>Liga da Justiça</em>, uma versão definitiva do filme lançado originalmente em 2017. Com quatro horas de duração, esta obra-prima apresenta a visão original do diretor <strong>Zack Snyder</strong>, que havia deixado o projeto por motivos pessoais antes do lançamento da versão anterior.</p>
+
+        <!-- Carrossel de heróis -->
+        <div class="hero-carousel">
+            <button class="carousel-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+            <button class="carousel-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+            
+            <div class="carousel-inner">
+                <div class="carousel-item">
+                    <img src="https://www.dccomics.com/sites/default/files/styles/character_thumb_160x160/public/Char_Profile_Superman_20190116_5c3fc2748f6a12.25513240.jpg" alt="Superman">
+                    <div class="carousel-caption">
+                        <h3>Superman</h3>
+                        <p>O último filho de Krypton retorna mais poderoso que nunca</p>
+                    </div>
+                </div>
+                <div class="carousel-item">
+                    <img src="https://www.dccomics.com/sites/default/files/styles/character_thumb_160x160/public/Char_Profile_Batman_20190116_5c3fc4b40faec2.47318964.jpg" alt="Batman">
+                    <div class="carousel-caption">
+                        <h3>Batman</h3>
+                        <p>O Cavaleiro das Trevas e estrategista da equipe</p>
+                    </div>
+                </div>
+                <!-- Adicione mais itens para outros heróis -->
+            </div>
+        </div>
+
+        <h2>Heróis em Destaque</h2>
+        <ul>
+            <li><strong>Superman (Clark Kent):</strong> Retorna mais poderoso do que nunca, com seu icônico traje negro.</li>
+            <li><strong>Batman (Bruce Wayne):</strong> O estrategista sombrio que lidera a formação da equipe.</li>
+            <li><strong>Mulher-Maravilha (Diana Prince):</strong> A guerreira amazona com 5,000 anos de experiência em combate.</li>
+            <li><strong>Aquaman (Arthur Curry):</strong> O rei dos oceanos com força sobre-humana.</li>
+            <li><strong>Flash (Barry Allen):</strong> O velocista escarlate que traz humor e energia à equipe.</li>
+            <li><strong>Ciborgue (Victor Stone):</strong> O coração tecnológico da equipe com acesso a todo conhecimento digital.</li>
+        </ul>
+
+<!-- Seção de vilões -->
+<div class="villains-section">
+    <h2>Os Grandes Vilões</h2>
+    <p>Conheça os antagonistas que desafiam a Liga da Justiça:</p>
+    
+    <div class="villains-grid">
+        <div class="villain-card">
+            <h3>O Espectro</h3>
+            <p>Um dos vilões mais poderosos da DC, com habilidades cósmicas que rivalizam com as do Superman.</p>
+        </div>
+        <div class="villain-card">
+            <h3>Sinestro</h3>
+            <p>Ex-membro do Corpo dos Lanternas Verdes que agora comanda o temido Corpo dos Lanternas Amarelos.</p>
+        </div>
+        <div class="villain-card">
+            <h3>Arlequina</h3>
+            <p>Ex-psiquiatra do Coringa, agora uma anti-heroína perigosa com habilidades acrobáticas excepcionais.</p>
+        </div>
+        <div class="villain-card">
+            <h3>Bizarro</h3>
+            <p>Versão distorcida e oposta do Superman, com poderes similares mas lógica invertida.</p>
+        </div>
+        <div class="villain-card">
+            <h3>Mulher-Gato</h3>
+            <p>Ladra habilidosa que vive no limite entre o bem e o mal, com um relacionamento complexo com Batman.</p>
+        </div>
+        <div class="villain-card">
+            <h3>Exterminador</h3>
+            <p>Androide assassino do futuro com tecnologia avançada que representa uma ameaça para toda a Liga.</p>
+        </div>
+    </div>
+</div>
+
+        <h3>Impacto Cultural</h3>
+        <p>O Snyder Cut foi aclamado por trazer profundidade sem precedentes aos personagens, especialmente ao <strong class="hero-highlight">Ciborgue</strong>, cujo arco emocional se tornou central na narrativa. Este fenômeno cultural reacendeu debates sobre autoria cinematográfica e demonstrou o poder dos fãs na indústria do entretenimento. A versão definitiva está disponível exclusivamente na <em>HBO Max</em> e continua influenciando o futuro do Universo Cinematográfico da DC.</p>
+
+        <footer>
+            <p><em>Fonte: Adaptado de CNN Brasil e Omelete, 2021. | Aula de Sistemas Web com Profa Laise.(UFBA) | Design modernizado para fãs da DC</em></p>
+        </footer>
+    </div>
+
+    <script>
+        // JavaScript para o carrossel
+        document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel-inner');
+            const items = document.querySelectorAll('.carousel-item');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            let currentIndex = 0;
+            const totalItems = items.length;
+
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 100}%)`;
+            }
+
+            nextBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex + 1) % totalItems;
+                updateCarousel();
+            });
+
+            prevBtn.addEventListener('click', function() {
+                currentIndex = (currentIndex - 1 + totalItems) % totalItems;
+                updateCarousel();
+            });
+
+            // Auto-rotacionar o carrossel
+            setInterval(function() {
+                currentIndex = (currentIndex + 1) % totalItems;
+                updateCarousel();
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
