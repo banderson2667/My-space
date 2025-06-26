@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edição de Perfil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-light: rgba(67, 97, 238, 0.1);
+            --secondary: #3f37c9;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: #f5f7fa;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .profile-container {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+        }
+
+        .profile-header {
+            padding: 25px;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .profile-title {
+            font-size: 1.8rem;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .edit-toggle-btn {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .edit-toggle-btn:hover {
+            background: var(--secondary);
+        }
+
+        .profile-content {
+            display: flex;
+            padding: 30px;
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .profile-content {
+                flex-direction: column;
+                gap: 25px;
+            }
+        }
+
+        .profile-picture-container {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--box-shadow);
+            border: 3px solid white;
+            flex-shrink: 0;
+        }
+
+        .profile-picture {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #4361ee, #3f37c9);
+            color: white;
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+
+        .profile-picture img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-details {
+            flex-grow: 1;
+        }
+
+        .profile-name {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        .profile-bio {
+            color: var(--gray);
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .section-title {
+            font-weight: 600;
+            font-size: 1.2rem;
+            margin: 20px 0 10px;
+            color: var(--dark);
+        }
+
+        .interests-container {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .interest-tag {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        /* Form Styles */
+        .profile-form {
+            display: none;
+            padding: 0 30px 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-weight: 500;
+        }
+
+        .btn-secondary {
+            background: var(--light-gray);
+            color: var(--dark);
+        }
+
+        .btn-secondary:hover {
+            background: #e2e6ea;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary);
+        }
+
+        /* Picture Upload */
+        .picture-upload {
+            position: relative;
+            width: fit-content;
+            margin-bottom: 20px;
+        }
+
+        .picture-upload-btn {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            color: var(--primary);
+            transition: all 0.3s;
+        }
+
+        .picture-upload-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Interests Select */
+        .interests-select {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .interest-option {
+            padding: 8px 16px;
+            background: var(--light-gray);
+            border-radius: 20px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s;
+        }
+
+        .interest-option.selected {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Status Message */
+        .alert {
+            padding: 15px;
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .alert-success {
+            background: rgba(76, 201, 240, 0.1);
+            color: #4cc9f0;
+            border: 1px solid rgba(76, 201, 240, 0.3);
+        }
+
+        .alert-error {
+            background: rgba(247, 37, 133, 0.1);
+            color: #f72585;
+            border: 1px solid rgba(247, 37, 133, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <!-- Alert Messages -->
+        <div class="alert" id="alert-message"></div>
+
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <h1 class="profile-title">Meu Perfil</h1>
+            <button class="edit-toggle-btn" id="edit-toggle">
+                <i class="fas fa-edit"></i> Editar Perfil
+            </button>
+        </div>
+
+        <!-- Profile View -->
+        <div class="profile-content" id="profile-view">
+            <div class="profile-picture-container">
+                <div class="profile-picture" id="profile-picture-view">JS</div>
+            </div>
+            <div class="profile-details">
+                <h2 class="profile-name" id="profile-name-view">João Silva</h2>
+                <p class="profile-bio" id="profile-bio-view">
+                    Desenvolvedor front-end com 5 anos de experiência, especializado em React e UI/UX. 
+                    Apaixonado por criar experiências digitais intuitivas e acessíveis para todos os usuários.
+                </p>
+                
+                <h3 class="section-title">Áreas de Interesse</h3>
+                <div class="interests-container" id="interests-container-view">
+                    <span class="interest-tag">Front-end</span>
+                    <span class="interest-tag">UI/UX</span>
+                    <span class="interest-tag">React</span>
+                    <span class="interest-tag">Acessibilidade</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Edit Form -->
+        <form class="profile-form" id="profile-form">
+            <div class="picture-upload">
+                <div class="profile-picture-container">
+                    <div class="profile-picture" id="profile-picture-edit">JS</div>
+                    <div class="picture-upload-btn" id="upload-btn">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                </div>
+                <input type="file" id="picture-upload-input" accept="image/*" style="display: none;">
+            </div>
+
+            <div class="form-group">
+                <label for="name-input">Nome</label>
+                <input type="text" id="name-input" class="form-control" required>
+            </div>
+
+            <div class="form-group">
+                <label for="bio-input">Biografia</label>
+                <textarea id="bio-input" class="form-control"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Áreas de Interesse</label>
+                <div class="interests-select" id="interests-select">
+                    <div class="interest-option selected" data-value="frontend">Front-end</div>
+                    <div class="interest-option selected" data-value="uiux">UI/UX</div>
+                    <div class="interest-option selected" data-value="react">React</div>
+                    <div class="interest-option" data-value="backend">Back-end</div>
+                    <div class="interest-option selected" data-value="accessibility">Acessibilidade</div>
+                    <div class="interest-option" data-value="mobile">Mobile</div>
+                    <div class="interest-option" data-value="testing">Testes</div>
+                    <div class="interest-option" data-value="devops">DevOps</div>
+                </div>
+            </div>
+
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" id="cancel-edit">Cancelar</button>
+                <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // DOM Elements
+            const profileView = document.getElementById('profile-view');
+            const profileForm = document.getElementById('profile-form');
+            const editToggle = document.getElementById('edit-toggle');
+            const cancelEdit = document.getElementById('cancel-edit');
+            const alertMessage = document.getElementById('alert-message');
+            const uploadBtn = document.getElementById('upload-btn');
+            const uploadInput = document.getElementById('picture-upload-input');
+            
+            // Profile data
+            let profileData = {
+                name: "João Silva",
+                bio: "Desenvolvedor front-end com 5 anos de experiência, especializado em React e UI/UX. Apaixonado por criar experiências digitais intuitivas e acessíveis para todos os usuários.",
+                initials: "JS",
+                interests: ["frontend", "uiux", "react", "accessibility"],
+                picture: null
+            };
+
+            // Available interests
+            const interestsList = {
+                "frontend": "Front-end",
+                "uiux": "UI/UX",
+                "react": "React",
+                "backend": "Back-end",
+                "accessibility": "Acessibilidade",
+                "mobile": "Mobile",
+                "testing": "Testes",
+                "devops": "DevOps"
+            };
+
+            // Initialize profile view
+            function initProfileView() {
+                document.getElementById('profile-name-view').textContent = profileData.name;
+                document.getElementById('profile-bio-view').textContent = profileData.bio;
+                
+                // Set profile picture
+                const profilePicView = document.getElementById('profile-picture-view');
+                profilePicView.textContent = profileData.initials;
+                if (profileData.picture) {
+                    profilePicView.textContent = '';
+                    profilePicView.style.backgroundImage = `url(${profileData.picture})`;
+                }
+                
+                // Set interests
+                const interestsContainer = document.getElementById('interests-container-view');
+                interestsContainer.innerHTML = '';
+                
+                profileData.interests.forEach(interest => {
+                    if (interestsList[interest]) {
+                        const tag = document.createElement('span');
+                        tag.className = 'interest-tag';
+                        tag.textContent = interestsList[interest];
+                        interestsContainer.appendChild(tag);
+                    }
+                });
+            }
+
+            // Initialize form with current data
+            function initProfileForm() {
+                document.getElementById('name-input').value = profileData.name;
+                document.getElementById('bio-input').value = profileData.bio;
+                
+                // Set profile picture
+                const profilePicEdit = document.getElementById('profile-picture-edit');
+                profilePicEdit.textContent = profileData.initials;
+                if (profileData.picture) {
+                    profilePicEdit.textContent = '';
+                    profilePicEdit.style.backgroundImage = `url(${profileData.picture})`;
+                } else {
+                    profilePicEdit.style.backgroundImage = '';
+                    profilePicEdit.textContent = profileData.initials;
+                }
+                
+                // Reset interests selection
+                document.querySelectorAll('.interest-option').forEach(option => {
+                    option.classList.remove('selected');
+                    if (profileData.interests.includes(option.dataset.value)) {
+                        option.classList.add('selected');
+                    }
+                });
+            }
+
+            // Show alert message
+            function showAlert(message, type) {
+                alertMessage.textContent = message;
+                alertMessage.className = `alert alert-${type}`;
+                alertMessage.style.display = 'block';
+                
+                setTimeout(() => {
+                    alertMessage.style.display = 'none';
+                }, 5000);
+            }
+
+            // Toggle between view and edit modes
+            function toggleEditMode() {
+                if (profileForm.style.display === 'block') {
+                    // Switching to view mode
+                    profileView.style.display = 'flex';
+                    profileForm.style.display 'none';
+                    editToggle.innerHTML = '<i class="fas fa-edit"></i> Editar Perfil';
+                } else {
+                    // Switching to edit mode
+                    initProfileForm();
+                    profileView.style.display = 'none';
+                    profileForm.style.display = 'block';
+                    editToggle.innerHTML = '<i class="fas fa-eye"></i> Visualizar Perfil';
+                }
+            }
+
+            // Event Listeners
+            editToggle.addEventListener('click', toggleEditMode);
+            cancelEdit.addEventListener('click', toggleEditMode);
+
+            // Handle profile picture upload
+            uploadBtn.addEventListener('click', () => {
+                uploadInput.click();
+            });
+
+            uploadInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Validate file type
+                    if (!file.type.match('image.*')) {
+                        showAlert('Por favor, selecione um arquivo de imagem válido (JPEG, PNG, etc.)', 'error');
+                        return;
+                    }
+
+                    // Validate file size (max 2MB)
+                    if (file.size > 2 * 1024 * 1024) {
+                        showAlert('A imagem deve ter no máximo 2MB', 'error');
+                        return;
+                    }
+
+                    // Preview image
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        const profilePicEdit = document.getElementById('profile-picture-edit');
+                        profilePicEdit.style.backgroundImage = `url(${event.target.result})`;
+                        profilePicEdit.textContent = '';
+                        profileData.picture = event.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Handle interest selection
+            document.getElementById('interests-select').addEventListener('click', function(e) {
+                if (e.target.classList.contains('interest-option')) {
+                    const selected = document.querySelectorAll('.interest-option.selected');
+                    
+                    if (e.target.classList.contains('selected')) {
+                        e.target.classList.remove('selected');
+                    } else {
+                        if (selected.length < 5) {
+                            e.target.classList.add('selected');
+                        } else {
+                            showAlert('Você pode selecionar no máximo 5 áreas de interesse', 'error');
+                        }
+                    }
+                }
+            });
+
+            // Handle form submission
+            profileForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name-input').value.trim();
+                const bio = document.getElementById('bio-input').value.trim();
+                
+                // Simple validation
+                if (name.length < 2) {
+                    showAlert('Por favor, insira um nome válido', 'error');
+                    return;
+                }
+                
+                // Update profile data
+                profileData.name = name;
+                profileData.bio = bio;
+                
+                // Get initials
+                const names = name.split(' ');
+                profileData.initials = (names[0].charAt(0) + (names[1] ? names[1].charAt(0) : '')).to
